@@ -2,44 +2,58 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { useEffect } from "react";
 
+import dataset from "../data-1.json";
+
 const Test = () => {
+  const data = dataset.dataset;
+  // data.length = 10;
+
+  let keys = Object.keys(data[0]);
+  keys = keys.filter((v) => v !== "time");
+
+  const series = [];
+  keys.forEach((key) => {
+    const value = data.map((obj) => obj[key]);
+
+    series.push({
+      name: key,
+      data: value,
+      yAxis: Math.max(...value) < 100 ? 0 : 1,
+    });
+  });
+
+  const categories = data.map((v) => v.time);
+  console.log(categories);
+
+  console.log(series);
+
+  useEffect(() => {}, []);
+
   return (
     <HighchartsReact
       // highcharts={Highcharts}
       options={{
-        chart: {
-          renderTo: "container",
-          type: "column",
-        },
+        chart: {},
         title: {
           text: "Fruit Consumption",
         },
         xAxis: {
-          title: {
-            text: "Fruit Number",
-          },
-          tickInterval: 1,
+          categories: categories,
         },
-        yAxis: {
-          title: {
-            text: "Fruit eaten",
-          },
-          tickInterval: 1,
-        },
-        series: [
+        yAxis: [
           {
-            name: "Jane",
-            data: [1, 0, 4],
+            min: 0,
+            max: 100,
+            tickInterval: 10,
           },
           {
-            name: "John",
-            data: [5, 7, 3],
-          },
-          {
-            name: "Han",
-            data: [1, 2, 3],
+            opposite: true,
+            min: 0,
+            max: 2000,
+            tickInterval: 500,
           },
         ],
+        series: series,
       }}
     />
   );

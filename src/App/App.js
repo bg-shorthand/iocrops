@@ -5,8 +5,6 @@ function App() {
     <>
       <h1>iocrops</h1>
       <Test />
-      <Test />
-      <Test />
     </>
   );
 }
