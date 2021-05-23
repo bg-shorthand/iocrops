@@ -1,15 +1,8 @@
-import createAverage from "./createAverage";
+import createMax from "./createMax";
+import createMin from "./createMin";
 
 const createDeviation = (array = []) => {
-  const average = createAverage(array);
-  const variance =
-    array.reduce(
-      (acc, cur) =>
-        isNaN(cur) ? acc : (cur - average) * (cur - average) + acc,
-      0
-    ) / array.filter((v) => typeof v === "number").length;
-
-  return Math.floor(Math.sqrt(variance) * 100) / 100;
+  return Math.floor((createMax(array) - createMin(array)) * 100) / 100;
 };
 
 export default createDeviation;

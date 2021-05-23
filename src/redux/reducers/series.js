@@ -1,10 +1,15 @@
 const initialState = [];
 
-const UPLOAD = "upload";
+const UPDATE = "update";
+
+const createUpdateAction = (payload) => ({
+  type: UPDATE,
+  payload,
+});
 
 const seriesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPLOAD:
+    case UPDATE:
       return [...action.payload];
     default:
       return state;
@@ -12,4 +17,4 @@ const seriesReducer = (state = initialState, action) => {
 };
 
 export default seriesReducer;
-export { UPLOAD };
+export { UPDATE, createUpdateAction };

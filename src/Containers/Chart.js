@@ -2,9 +2,9 @@ import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import { dataset } from "data-1.json";
-import { UPLOAD } from "redux/reducers/series";
+import { createUpdateAction } from "redux/reducers/series";
+import createRandomColor from "modules/createRandomColor";
 
 const Chart = () => {
   const series = useSelector((state) => state.series);
@@ -18,11 +18,20 @@ const Chart = () => {
     const payload = dataNames.map((name) => ({
       name,
       data: dataset.map((data) => data[name]),
-      yAxis: Math.max(...dataset.map((data) => data[name])) < 10 ? 0 : 1,
+      yAxis:
+        Math.max(
+          ...dataset
+            .map((data) => data[name])
+            .filter((data) => typeof data === "number")
+        ) < 10
+          ? 0
+          : 1,
+      color: createRandomColor(),
+      checked: true,
     }));
 
-    dispatch({ type: UPLOAD, payload });
-  }, [dispatch]);
+    dispatch(createUpdateAction(payload));
+  }, []);
 
   return (
     <HighchartsReact
@@ -40,7 +49,7 @@ const Chart = () => {
             opposite: true,
           },
         ],
-        series: series,
+        series: series.filter((item) => item.checked),
       }}
     />
   );

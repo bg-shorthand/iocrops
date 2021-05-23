@@ -7,8 +7,15 @@ const Table = () => {
 
   return (
     <TableHead>
-      {series.map(({ name, data }) => (
-        <TableRow name={name} data={data}></TableRow>
+      {series.map(({ name, data, checked, color, yAxis }) => (
+        <TableRow
+          key={name}
+          name={name}
+          data={data}
+          checked={checked}
+          color={color}
+          yAxis={yAxis}
+        ></TableRow>
       ))}
     </TableHead>
   );
