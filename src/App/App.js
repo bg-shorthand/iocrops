@@ -1,11 +1,12 @@
-import Chart from "../Components/Chart";
-import StoreProvider from "../redux/store";
+import Chart from "Containers/Chart";
+import Table from "Containers/Table";
+import StoreProvider from "redux/store";
 
 function App() {
   return (
     <StoreProvider>
-      <h1>iocrops</h1>
       <Chart />
+      <Table />
     </StoreProvider>
   );
 }

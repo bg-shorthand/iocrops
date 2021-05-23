@@ -3,8 +3,8 @@ import HighchartsReact from "highcharts-react-official";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { dataset } from "../data-1.json";
-import { UPLOAD } from "../redux/reducers/series";
+import { dataset } from "data-1.json";
+import { UPLOAD } from "redux/reducers/series";
 
 const Chart = () => {
   const series = useSelector((state) => state.series);
