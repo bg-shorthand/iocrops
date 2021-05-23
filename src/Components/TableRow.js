@@ -2,15 +2,8 @@ import createAverage from "modules/createAverage";
 import createDeviation from "modules/createDeviation";
 import createMax from "modules/createMax";
 import createMin from "modules/createMin";
-import { useEffect } from "react";
 
 const TableRow = ({ name, data }) => {
-  useEffect(() => {
-    // console.log(", ;
-    // console.log("name", name);
-    // console.log("data", data);
-  });
-
   return (
     <tr>
       <td>

@@ -1,5 +1,11 @@
 const createAverage = (array = []) => {
-  return array.reduce((acc, cur) => acc + cur, 0) / array.length;
+  return (
+    Math.floor(
+      (array.reduce((acc, cur) => (isNaN(cur) ? acc : acc + cur), 0) /
+        array.length) *
+        100
+    ) / 100
+  );
 };
 
 export default createAverage;
