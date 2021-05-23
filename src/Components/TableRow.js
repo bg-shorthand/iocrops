@@ -7,7 +7,7 @@ const TableRow = ({ name, data }) => {
   return (
     <tr>
       <td>
-        <input type="checkbox" id={name} />
+        <input type="checkbox" id={name} checked />
         <label htmlFor={name}>{name} 표시</label>
       </td>
       <td>
@@ -19,8 +19,20 @@ const TableRow = ({ name, data }) => {
       <td>{createMin(data)}</td>
       <td>{createMax(data)}</td>
       <td>
-        <input type="radio" name={`${name}selectYaxis`} />
-        <input type="radio" name={`${name}selectYaxis`} />
+        <input
+          type="radio"
+          name={`${name}selectYaxis`}
+          id={`${name}selectLeft`}
+          checked={createMin(data) < 10}
+        />
+        <label htmlFor={`${name}selectLeft`}>왼쪽</label>
+        <input
+          type="radio"
+          name={`${name}selectYaxis`}
+          id={`${name}selectRight`}
+          checked={createMin(data) >= 10}
+        />
+        <label htmlFor={`${name}selectRight`}>오른쪽</label>
       </td>
       <td>
         <span>컬러피커</span>

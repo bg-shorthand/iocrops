@@ -3,7 +3,10 @@ const TableHead = ({ children }) => {
     <table>
       <thead>
         <tr>
-          <td>체크박스</td>
+          <td>
+            <input type="checkbox" id="checkAll" checked />
+            <label htmlFor="checkAll">전체 표시</label>
+          </td>
           <td>색상</td>
           <td>항목</td>
           <td>평균값</td>
