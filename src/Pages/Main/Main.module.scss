@@ -1,0 +1,37 @@
+.header,
+.main {
+  max-width: 900px;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+}
+
+.main {
+  & table {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+
+    & thead {
+      background-color: rgba(211, 211, 211, 0.616);
+    }
+
+    & tbody > tr {
+      border-top: 1px solid rgba(211, 211, 211, 0.616);
+    }
+
+    & tbody td:first-child {
+      text-align: left;
+    }
+
+    & button {
+      border: none;
+      background-color: transparent;
+      padding: 0;
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

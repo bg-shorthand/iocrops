@@ -73,25 +73,30 @@ const TableRow = ({ name, data, checked, color, yAxis }) => {
         <label htmlFor={`${name}selectRight`}>오른쪽</label>
       </td>
       <td>
+        <button onClick={(e) => setIsActiveColor(() => true)}>
+          <UpdateColorIcon />
+        </button>
         {isActiveColor ? (
-          <CompactPicker
-            color={color}
-            onChangeComplete={(color) => {
-              dispatch(
-                createUpdateAction(
-                  series.map((item) =>
-                    item.name === name ? { ...item, color: color.hex } : item
-                  )
-                )
-              );
-              setIsActiveColor(() => false);
+          <div
+            style={{
+              position: "absolute",
             }}
-          />
-        ) : (
-          <button onClick={() => setIsActiveColor(() => true)}>
-            <UpdateColorIcon />
-          </button>
-        )}
+          >
+            <CompactPicker
+              color={color}
+              onChangeComplete={(color) => {
+                dispatch(
+                  createUpdateAction(
+                    series.map((item) =>
+                      item.name === name ? { ...item, color: color.hex } : item
+                    )
+                  )
+                );
+                setIsActiveColor(() => false);
+              }}
+            />
+          </div>
+        ) : null}
       </td>
     </tr>
   );

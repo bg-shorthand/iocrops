@@ -9,7 +9,6 @@ const DownloadCsvButton = () => {
     const csvString = series
       .map(({ name, data }) => [name, ...data.map((num) => num + "")])
       .join("\n");
-    console.log(csvString);
     setCsv(csvString);
   }, [series]);
 

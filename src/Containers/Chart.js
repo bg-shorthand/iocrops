@@ -40,6 +40,9 @@ const Chart = () => {
         title: {
           text: "",
         },
+        legend: {
+          enabled: false,
+        },
         xAxis: {
           categories: categories,
         },
