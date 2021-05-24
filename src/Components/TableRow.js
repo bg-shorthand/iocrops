@@ -40,7 +40,14 @@ const TableRow = ({ name, data, checked, color, yAxis }) => {
         <label htmlFor={name}>{name} 표시</label>
       </td>
       <td>
-        <span>{color}</span>
+        <div
+          style={{
+            width: "20px",
+            height: "20px",
+            borderRadius: "50%",
+            backgroundColor: color,
+          }}
+        ></div>
       </td>
       <td>{name}</td>
       <td>{createAverage(data)}</td>
@@ -68,7 +75,17 @@ const TableRow = ({ name, data, checked, color, yAxis }) => {
       <td>
         {isActiveColor ? (
           <CompactPicker
-            onChangeComplete={() => setIsActiveColor(() => !isActiveColor)}
+            color={color}
+            onChangeComplete={(color) => {
+              dispatch(
+                createUpdateAction(
+                  series.map((item) =>
+                    item.name === name ? { ...item, color: color.hex } : item
+                  )
+                )
+              );
+              setIsActiveColor(() => false);
+            }}
           />
         ) : (
           <button onClick={() => setIsActiveColor(() => true)}>
