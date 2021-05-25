@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 const DownloadCsvButton = () => {
-  const series = useSelector((state) => state.series);
+  const options = useSelector((state) => state.options);
+  const { series } = options;
   const [csv, setCsv] = useState("");
 
   useEffect(() => {

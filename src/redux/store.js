@@ -1,10 +1,10 @@
 import { Provider } from "react-redux";
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import logger from "redux-logger";
-import seriesReducer from "./reducers/series";
+import optionsReducer from "./reducers/options";
 
 const rootReducer = combineReducers({
-  series: seriesReducer,
+  options: optionsReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(logger));

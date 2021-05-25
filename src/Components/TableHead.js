@@ -1,19 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
-import { createUpdateAction } from "redux/reducers/series";
+import { createUpdateSeriesAction } from "redux/reducers/options";
 
 const TableHead = () => {
-  const series = useSelector((state) => state.series);
+  const options = useSelector((state) => state.options);
+  const { series } = options;
   const dispatch = useDispatch();
 
   const onChangeDisplayAll = (e) => {
-    console.log(e.target);
-
     const payload = series.map((item) => ({
       ...item,
       checked: e.target.checked ? true : false,
     }));
 
-    dispatch(createUpdateAction(payload));
+    dispatch(createUpdateSeriesAction(payload));
   };
 
   return (

@@ -3,7 +3,8 @@ import TableRow from "Components/TableRow";
 import { useSelector } from "react-redux";
 
 const Table = ({ className }) => {
-  const series = useSelector((state) => state.series);
+  const options = useSelector((state) => state.options);
+  const { series } = options;
 
   return (
     <table className={className}>

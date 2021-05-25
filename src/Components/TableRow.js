@@ -6,11 +6,12 @@ import createMin from "modules/createMin";
 import { ReactComponent as UpdateColorIcon } from "assets/highlighter-solid.svg";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createUpdateAction } from "redux/reducers/series";
+import { createUpdateSeriesAction } from "redux/reducers/options";
 
 const TableRow = ({ name, data, checked, color, yAxis }) => {
   const [isActiveColor, setIsActiveColor] = useState(false);
-  const series = useSelector((state) => state.series);
+  const options = useSelector((state) => state.options);
+  const { series } = options;
   const dispatch = useDispatch();
 
   const onChangeDisplayItem = (name) => {
@@ -18,14 +19,14 @@ const TableRow = ({ name, data, checked, color, yAxis }) => {
       return item.name === name ? { ...item, checked: !item.checked } : item;
     });
 
-    dispatch(createUpdateAction(payload));
+    dispatch(createUpdateSeriesAction(payload));
   };
   const onChageYaxis = (name) => {
     const payload = series.map((item) =>
       item.name === name ? { ...item, yAxis: item.yAxis ? 0 : 1 } : item
     );
 
-    dispatch(createUpdateAction(payload));
+    dispatch(createUpdateSeriesAction(payload));
   };
 
   return (
@@ -86,7 +87,7 @@ const TableRow = ({ name, data, checked, color, yAxis }) => {
               color={color}
               onChangeComplete={(color) => {
                 dispatch(
-                  createUpdateAction(
+                  createUpdateSeriesAction(
                     series.map((item) =>
                       item.name === name ? { ...item, color: color.hex } : item
                     )

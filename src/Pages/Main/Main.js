@@ -1,5 +1,6 @@
 import DownloadCsvButton from "Components/DownloadCsvButton";
 import Chart from "Containers/Chart";
+import Date from "Containers/Date";
 import Table from "Containers/Table";
 import style from "./Main.module.scss";
 
@@ -12,6 +13,7 @@ const Main = () => {
       <main className={style.main}>
         <section className="chart">
           <header>
+            <Date />
             <DownloadCsvButton />
           </header>
           <main>
