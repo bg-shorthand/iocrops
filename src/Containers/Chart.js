@@ -11,7 +11,7 @@ const Chart = () => {
   const options = useSelector((state) => state.options);
   const dispatch = useDispatch();
 
-  const [activeOptions, setActiveOptions] = useState(options);
+  const [activeOptions, setActiveOptions] = useState({ ...options });
 
   useEffect(() => {
     const series = changeDateToSeries(dataset);
@@ -26,13 +26,13 @@ const Chart = () => {
   }, []);
 
   useEffect(() => {
-    const _series = options.series;
+    const { series } = options;
 
-    setActiveOptions((prev) => ({
-      ...prev,
-      series: _series.filter((item) => item.checked && item.inDate),
+    setActiveOptions({
+      ...options,
+      series: series.filter((item) => item.checked && item.inDate),
       xAxis: { ...options.xAxis },
-    }));
+    });
   }, [options]);
 
   return <HighchartsReact highcharts={Highcharts} options={activeOptions} />;

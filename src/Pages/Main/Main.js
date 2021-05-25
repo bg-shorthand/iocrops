@@ -13,7 +13,7 @@ const Main = () => {
       <main className={style.main}>
         <section className="chart">
           <header>
-            <Date />
+            {/* <Date /> */}
             <DownloadCsvButton />
           </header>
           <main>

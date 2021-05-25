@@ -17,13 +17,10 @@ const Date = () => {
     );
   }, [categories]);
 
-  console.log(start, end);
-
   return (
     <>
       <DateInput
         onChange={(e) => {
-          console.log(e.target.value);
           setStart(e.target.value);
         }}
         value={start}

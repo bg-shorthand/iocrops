@@ -7,7 +7,6 @@ const Table = ({ className }) => {
   const options = useSelector((state) => state.options);
   const { series } = options;
   const dispatch = useDispatch();
-  const _series = series;
 
   const onChangeDisplayItem = (name) => {
     const payload = series.map((item) =>
@@ -26,7 +25,7 @@ const Table = ({ className }) => {
     <table className={className}>
       <TableHead />
       <tbody>
-        {_series.map(({ name, data, checked, color, yAxis }) => (
+        {series.map(({ name, data, checked, color, yAxis }) => (
           <TableRow
             key={name}
             name={name}
