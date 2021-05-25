@@ -8,26 +8,20 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createUpdateSeriesAction } from "redux/reducers/options";
 
-const TableRow = ({ name, data, checked, color, yAxis }) => {
-  const [isActiveColor, setIsActiveColor] = useState(false);
+const TableRow = ({
+  name,
+  data,
+  checked,
+  color,
+  yAxis,
+  onChangeDisplayItem,
+  onChageYaxis,
+}) => {
   const options = useSelector((state) => state.options);
   const { series } = options;
   const dispatch = useDispatch();
 
-  const onChangeDisplayItem = (name) => {
-    const payload = series.map((item) => {
-      return item.name === name ? { ...item, checked: !item.checked } : item;
-    });
-
-    dispatch(createUpdateSeriesAction(payload));
-  };
-  const onChageYaxis = (name) => {
-    const payload = series.map((item) =>
-      item.name === name ? { ...item, yAxis: item.yAxis ? 0 : 1 } : item
-    );
-
-    dispatch(createUpdateSeriesAction(payload));
-  };
+  const [isActiveColor, setIsActiveColor] = useState(false);
 
   return (
     <tr>
@@ -60,7 +54,7 @@ const TableRow = ({ name, data, checked, color, yAxis }) => {
           type="radio"
           name={`${name}selectYaxis`}
           id={`${name}selectLeft`}
-          checked={yAxis === 0}
+          checked={!yAxis}
           onChange={() => onChageYaxis(name)}
         />
         <label htmlFor={`${name}selectLeft`}>왼쪽</label>
@@ -68,13 +62,13 @@ const TableRow = ({ name, data, checked, color, yAxis }) => {
           type="radio"
           name={`${name}selectYaxis`}
           id={`${name}selectRight`}
-          checked={yAxis === 1}
+          checked={!!yAxis}
           onChange={() => onChageYaxis(name)}
         />
         <label htmlFor={`${name}selectRight`}>오른쪽</label>
       </td>
       <td>
-        <button onClick={(e) => setIsActiveColor(() => true)}>
+        <button onClick={() => setIsActiveColor(() => true)}>
           <UpdateColorIcon />
         </button>
         {isActiveColor ? (
